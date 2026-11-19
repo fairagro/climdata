@@ -3,7 +3,7 @@ name: Sync FAIRagro UC6 from upstream
 
 on:
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "44 1 */2 * *"
   workflow_dispatch:
 
 permissions:
