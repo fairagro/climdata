@@ -1,0 +1,30 @@
+
+name: Sync FAIRagro UC6 from upstream
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout organisation repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sync upstream changes
+        run: |
+          git remote add upstream https://github.com/Kaushikreddym/climdata.git
+          git fetch upstream
+          git checkout main
+          git merge --ff-only upstream/main
+          git push origin main
+
+
